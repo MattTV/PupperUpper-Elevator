@@ -1,0 +1,12 @@
+Required:
+Warning
+Lift dogs at least 30 pounds
+Lift dogs at least 15 inches
+Operable by trained dog alone after init setup
+Lift up and down
+Measure weight within 3 pounds
+Communicate weight to user
+
+Ask Troy about if the elevator needs to be built
+Ask troy about end date
+Start watching classes
