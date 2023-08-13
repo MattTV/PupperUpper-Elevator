@@ -1,0 +1,28 @@
+Early demo:
+Moves a servo based on the button pressed
+Buttons lockout
+Button setup
+
+
+Main:
+Tests DB, baseline, and warning with random weights
+Generate random weight, print it and time, add to DB
+Print all
+Calculate baseline
+Print baseline
+Test warning messages
+
+Pupalgo:
+Functions to calculate baseline or warn
+Calculate baseline as 10 results averaged
+Tell if it should warn or not if it's 5% above or below
+
+DB can:
+Functions to interact with database
+Add weight with time
+Get baseline
+Set baseline
+Get 10 data points
+Dump all
+Clear DB
+

@@ -1,48 +1,60 @@
 import time
 import sqlite3
 
-def AddWeight(weight):
-    conn = sqlite3.connect('pupperweights.db')
+conn = null
+c = null
+
+def OpenDB():
+    conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
-    c.execute(f"INSERT INTO pupper VALUES ({weight}, {time.time()})")
+
+def SaveAndCloseDB():
     conn.commit()
     conn.close()
 
-def GetBaseline():
-    conn = sqlite3.connect('pupperweights.db')
+def AddWeight(weight):
+    conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM baseline")
-    baseline = c.fetchone()[0]
+    c.execute(f"INSERT INTO weights VALUES ({weight}, {time.time()})")
+    conn.commit()
     conn.close()
-    return baseline
+
+#Not sure if this works yet
+#def GetLatestBaseline():
+#    conn = sqlite3.connect('pupperweights.db')
+#    c = conn.cursor()
+#    c.execute("SELECT * FROM baselines")
+#    baseline = c.fetchone()[0]
+#    conn.close()
+#    return baseline
 
 def GetTen():
-    conn = sqlite3.connect('pupperweights.db')
+    conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM pupper")
+    c.execute("SELECT * FROM weights")
     weights = c.fetchmany(10)
     conn.close()
     return weights
 
 def SetBaseline(baseline):
-    conn = sqlite3.connect('pupperweights.db')
+    conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
-    c.execute("DELETE FROM baseline")
+    c.execute("DELETE FROM baselines")
     conn.commit()
-    c.execute(f"INSERT INTO baseline VALUES ({baseline})")
+    c.execute(f"INSERT INTO baselines VALUES ({baseline}, {time.time()})")
     conn.commit()
     conn.close()
 
 def DumpAll():
-    conn = sqlite3.connect('pupperweights.db')
+    conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
-    c.execute("SELECT * FROM pupper")
+    c.execute("SELECT * FROM weights")
     print(c.fetchall())
     conn.close()
 
 def ClearDB():
-    conn = sqlite3.connect('pupperweights.db')
+    conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
-    c.execute("DELETE FROM pupper")
+    c.execute("DELETE FROM weights")
     conn.commit()
     conn.close()
