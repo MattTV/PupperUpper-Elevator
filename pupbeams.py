@@ -14,18 +14,21 @@ def IsBottomBeamBroken():
     return GPIO.input(PIN_BEAM_BOTTOM == GPIO.LOW)
 
 def TestBeams():
+    
     tempTop = False
     tempBottom = False
     currentTop = False
     currentBottom = False
+
     while True:
+
         tempTop = IsTopBeamBroken()
         tempBottom = IsBottomBeamBroken()
 
         if tempTop != currentTop:
             currentTop = tempTop
-            print(f'Top: {currentTop}')
+            print(f'Top Beam: {currentTop}')
 
         if tempBottom != currentBottom:
             currentBottom = tempBottom
-            print(f'Bottom: {currentBottom}')
+            print(f'Bottom Beam: {currentBottom}')

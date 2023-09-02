@@ -12,3 +12,23 @@ def IsUpButtonPressed():
 
 def IsDownButtonPressed():
     return GPIO.input(PIN_BUTTON_DOWN) == GPIO.HIGH
+
+def TestButtons():
+
+    tempUp = False
+    tempDown = False
+    currentUp = False
+    currentDown = False
+
+    while True:
+
+        tempUp = IsUpButtonPressed()
+        tempDown = IsDownButtonPressed()
+        
+        if tempUp != currentUp:
+            currentUp = tempUp
+            print(f'Up Button: {currentUp}')
+
+        if tempDown != currentDown:
+            currentDown = tempDown
+            print(f'Down Button: {currentDown}')

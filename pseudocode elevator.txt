@@ -1,0 +1,5 @@
+Wait for a button press or sensor to activate. Button press for opposite side or break beam from current side
+If button, react immediately, if break beam, wait until it's no longer active.
+Begin moving elevator
+Take weight measurement
+Arrive at bottom, back to waiting state
