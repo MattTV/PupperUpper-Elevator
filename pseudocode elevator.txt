@@ -3,3 +3,10 @@ If button, react immediately, if break beam, wait until it's no longer active.
 Begin moving elevator
 Take weight measurement
 Arrive at bottom, back to waiting state
+
+
+
+Watch for:
+all the time 2 button presses
+If at top, watch for top beam and down button
+If at bottom, watch for bottom beam and up button

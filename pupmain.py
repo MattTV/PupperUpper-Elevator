@@ -2,6 +2,7 @@ import pupbeams
 import pupscale
 import pupmotors
 import pupbuttons
+import pupbaseline
 from enum import Enum
 
 def main():
@@ -11,6 +12,9 @@ def main():
 
     States = Enum('States', [ 'TOP', 'BOTTOM', 'LIFTING', 'LOWERING' ])
     state = States.BOTTOM
+
+    Location = Enum('Location', [ 'TOP', 'BOTTOM' ] )
+    location = States.BOTTOM
     
     while True:
 
@@ -51,6 +55,30 @@ def main():
             case _:
                 pass
 
+        if pupbuttons.IsUpButtonPressed() and pupbuttons.IsDownButtonPressed():
+
+            pupbaseline.ChangeBaseline()
+
+        match(location):
+            
+            case States.BOTTOM:
+                
+                if pupbuttons.IsUpButtonPressed() or pupbeams.IsBottomBeamBroken():
+
+                    # Wait until the beam is clear
+                    while pupbeams.IsBottomBeamBroken():
+                        pass
+
+
+    
+            case States.TOP:
+                
+                if pupbuttons.IsDownButtonPressed() or pupbeams.IsTopBeamBroken():
+                    while pupbeams.IsTopBeamBroken():
+                        pass
+
+                    
 
 if __name__ == "__main__":
     main()
+    

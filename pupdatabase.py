@@ -36,7 +36,7 @@ def GetTen():
     conn.close()
     return weights
 
-def SetBaseline(baseline):
+def AddBaseline(baseline):
     conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
     c.execute("DELETE FROM baselines")

@@ -8,3 +8,5 @@ def MeasureWeight():
     pupdb.AddWeight(randomweight)
 
     print(f'Measured random weight: {randomweight}')
+
+    return randomweight
