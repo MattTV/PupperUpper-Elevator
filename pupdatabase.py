@@ -1,60 +1,86 @@
 import time
 import sqlite3
 
-conn = null
-c = null
+conn = None
+c = None
 
-def OpenDB():
+def _OpenDB():
+    
     conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
 
-def SaveAndCloseDB():
+def _SaveAndCloseDB():
+
     conn.commit()
     conn.close()
+
+def _CloseNoSave():
+
+    conn.close()
+
+def _SaveNoClose():
+
+    conn.commit()
 
 def AddWeight(weight):
-    conn = sqlite3.connect('pupperupper.db')
-    c = conn.cursor()
+
+    _OpenDB()
+
     c.execute(f"INSERT INTO weights VALUES ({weight}, {time.time()})")
-    conn.commit()
-    conn.close()
+
+    _SaveAndCloseDB()
 
 #Not sure if this works yet
-#def GetLatestBaseline():
-#    conn = sqlite3.connect('pupperweights.db')
-#    c = conn.cursor()
-#    c.execute("SELECT * FROM baselines")
-#    baseline = c.fetchone()[0]
-#    conn.close()
-#    return baseline
+def GetLatestBaseline():
+
+    _OpenDB()
+
+    c.execute("SELECT * FROM baselines")
+
+    baseline = c.fetchone()[0]
+
+    _CloseNoSave()
+
+    return baseline
 
 def GetTen():
-    conn = sqlite3.connect('pupperupper.db')
-    c = conn.cursor()
+
+    _OpenDB()
+
     c.execute("SELECT * FROM weights")
+
     weights = c.fetchmany(10)
-    conn.close()
+
+    _CloseNoSave()
+
     return weights
 
 def AddBaseline(baseline):
-    conn = sqlite3.connect('pupperupper.db')
-    c = conn.cursor()
+
+    _OpenDB()
+
     c.execute("DELETE FROM baselines")
-    conn.commit()
+
+    _SaveNoClose()
+
     c.execute(f"INSERT INTO baselines VALUES ({baseline}, {time.time()})")
-    conn.commit()
-    conn.close()
+
+    _SaveAndCloseDB()
 
 def DumpAll():
-    conn = sqlite3.connect('pupperupper.db')
-    c = conn.cursor()
+
+    _OpenDB()
+
     c.execute("SELECT * FROM weights")
+
     print(c.fetchall())
-    conn.close()
+
+    _CloseNoSave()
 
 def ClearDB():
-    conn = sqlite3.connect('pupperupper.db')
-    c = conn.cursor()
+
+    _OpenDB()
+
     c.execute("DELETE FROM weights")
-    conn.commit()
-    conn.close()
+
+    _SaveAndCloseDB()

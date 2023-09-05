@@ -9,14 +9,14 @@ def ChangeBaseline():
 
     stop = False
 
-    while stop != True:
+    while not stop:
         
         weight = pupscale.MeasureWeight()
         puplcd.WriteLCD(f'{weight} Pounds', 0, 0)
         
-        if pupbuttons.IsUpButtonPressed() == True:
+        if pupbuttons.IsUpButtonPressed():
             stop = True
             pupdatabase.AddBaseline(weight)
             
-        elif pupbuttons.IsDownButtonPressed() == True:
+        elif pupbuttons.IsDownButtonPressed():
             stop = True
