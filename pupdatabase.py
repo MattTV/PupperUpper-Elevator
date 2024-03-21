@@ -6,6 +6,8 @@ c = None
 
 def _OpenDB():
     
+    global conn
+    global c
     conn = sqlite3.connect('pupperupper.db')
     c = conn.cursor()
 
