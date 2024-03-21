@@ -1,57 +1,62 @@
-import puplcd
+# import puplcd
 import pupbeams
-import pupscale
-import pupmotors
+# import pupscale
+# import pupmotors
 import pupbuttons
-import pupbaseline
-import pupdatabase
-from enum import Enum
+# import pupbaseline
+# import pupdatabase
+# from enum import Enum
 
 def main():
 
-    pupbeams.InitBeams()
-    pupbeams.TestBeams()
+    # Tested Ok!
+    # pupbuttons.InitButtons()
+    # pupbuttons.TestButtons()
 
-    Locations = Enum('Locations', [ 'TOP', 'BOTTOM' ] )
-    location = Locations.BOTTOM
+    # Tested Ok!
+    # pupbeams.InitBeams()
+    # pupbeams.TestBeams()
+
+    # Locations = Enum('Locations', [ 'TOP', 'BOTTOM' ] )
+    # location = Locations.BOTTOM
     
-    while True:
+    # while True:
 
-        if pupbuttons.IsUpButtonPressed() and pupbuttons.IsDownButtonPressed():
+    #     if pupbuttons.IsUpButtonPressed() and pupbuttons.IsDownButtonPressed():
 
-            pupbaseline.ChangeBaseline()
+    #         pupbaseline.ChangeBaseline()
 
-        match(location):
+    #     match(location):
             
-            case Locations.BOTTOM:
+    #         case Locations.BOTTOM:
                 
-                if pupbuttons.IsUpButtonPressed() or pupbeams.IsBottomBeamBroken():
+    #             if pupbuttons.IsUpButtonPressed() or pupbeams.IsBottomBeamBroken():
 
-                    # Wait until the beam is clear
-                    while pupbeams.IsBottomBeamBroken():
+    #                 # Wait until the beam is clear
+    #                 while pupbeams.IsBottomBeamBroken():
                         
-                        # Weighing and displaying process
-                        MeasureRecordCheckDisplay()
+    #                     # Weighing and displaying process
+    #                     MeasureRecordCheckDisplay()
 
-                        # Raise the lift
-                        pupmotors.RaiseLift()
+    #                     # Raise the lift
+    #                     pupmotors.RaiseLift()
 
-                        # Set state to TOP
-                        location = Locations.TOP
+    #                     # Set state to TOP
+    #                     location = Locations.TOP
     
-            case Locations.TOP:
+    #         case Locations.TOP:
                 
-                if pupbuttons.IsDownButtonPressed() or pupbeams.IsTopBeamBroken():
-                    while pupbeams.IsTopBeamBroken():
+    #             if pupbuttons.IsDownButtonPressed() or pupbeams.IsTopBeamBroken():
+    #                 while pupbeams.IsTopBeamBroken():
                         
-                        # Weighing and displaying process
-                        MeasureRecordCheckDisplay()
+    #                     # Weighing and displaying process
+    #                     MeasureRecordCheckDisplay()
 
-                        # Raise the lift
-                        pupmotors.LowerLift()
+    #                     # Raise the lift
+    #                     pupmotors.LowerLift()
 
-                        # Set state to BOTTOM
-                        location = Locations.BOTTOM
+    #                     # Set state to BOTTOM
+    #                     location = Locations.BOTTOM
 
 def MeasureRecordCheckDisplay():
     # Measure Weight

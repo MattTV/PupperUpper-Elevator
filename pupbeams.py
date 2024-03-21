@@ -1,17 +1,18 @@
 import RPi.GPIO as GPIO
 
-PIN_BEAM_TOP = 16
-PIN_BEAM_BOTTOM = 18
+PIN_BEAM_TOP = 15
+PIN_BEAM_BOTTOM = 14
 
 def InitBeams():
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(PIN_BEAM_TOP, GPIO.IN, pull_up_down=GPIO.PUD_UP)
     GPIO.setup(PIN_BEAM_BOTTOM, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
 def IsTopBeamBroken():
-    return GPIO.input(PIN_BEAM_TOP == GPIO.LOW)
+    return GPIO.input(PIN_BEAM_TOP) == GPIO.LOW
 
 def IsBottomBeamBroken():
-    return GPIO.input(PIN_BEAM_BOTTOM == GPIO.LOW)
+    return GPIO.input(PIN_BEAM_BOTTOM) == GPIO.LOW
 
 def TestBeams():
     

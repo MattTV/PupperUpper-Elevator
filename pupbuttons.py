@@ -1,9 +1,10 @@
 import RPi.GPIO as GPIO
 
-PIN_BUTTON_UP = 3
-PIN_BUTTON_DOWN = 5
+PIN_BUTTON_UP = 24
+PIN_BUTTON_DOWN = 23
 
 def InitButtons():
+    GPIO.setmode(GPIO.BCM)
     GPIO.setup(PIN_BUTTON_UP, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     GPIO.setup(PIN_BUTTON_DOWN, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 
