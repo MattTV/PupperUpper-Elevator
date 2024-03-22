@@ -1,9 +1,21 @@
-import random
+cycle = 1
 
 def MeasureWeight():
 
-    randomweight = random.randint(5, 120)
+    weight = 0
+    global cycle
 
-    print(f'Measured random weight: {randomweight}')
+    match(cycle):
+        case 1:
+            weight = 24
+            cycle += 1
+        case 2:
+            weight = 26
+            cycle += 1
+        case 3:
+            weight = 30
+            cycle = 1
 
-    return randomweight
+    print(f'Measured weight: {weight}')
+
+    return weight
